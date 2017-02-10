@@ -8,6 +8,44 @@
 A simple handler implementation of GraphQL using [Perfect](http://perfect.org)
 
 
+## How it works?
+
+A simple route with a `indexHandler` call when `GET` on `/graphql` route.
+
+```swift
+routes.add(method: .get, uri: "/graphql", handler: indexHandler)
+```
+
+Define your schema with `RootQueries`, `RootMutations` e etc...
+
+```swift
+do {
+    let schema = try GraphQLSchema(
+        query: GraphQLObjectType(
+            name: "RootQueryType",
+            fields: [
+                "hello": GraphQLField(
+                    type: GraphQLString,
+                    resolve: { _ in "world" }
+                )
+            ]
+        )
+    )
+```
+
+Execute graphql request:
+
+```swift
+let result = try graphql(schema: schema, request: query)
+```
+
+__[GraphQL library](https://github.com/GraphQLSwift/GraphQL)__ returns a `map`
+by default, to get a JSON you should use `result.description` like @paulofaria
+says here:
+[#1](https://github.com/GraphQLSwift/GraphQL/issues/1#issuecomment-257182572)
+
+
+
 ## Usage example
 
 `make run`
