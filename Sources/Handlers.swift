@@ -3,9 +3,9 @@ import PerfectHTTP
 import GraphQL
 
 
-
+// indexHandler 
 func indexHandler(request: HTTPRequest, _ response: HTTPResponse) {
-
+    // check "query" param o query string
     if let query = request.param(name: "query"){
         do {
             let schema = try GraphQLSchema(
@@ -19,6 +19,7 @@ func indexHandler(request: HTTPRequest, _ response: HTTPResponse) {
                     ]
                 )
             )
+            // call graphql query parser
             let result = try graphql(schema: schema, request: query)
             response.setHeader(.contentType, value: "application/json")
             response.appendBody(string: result.description)

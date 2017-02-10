@@ -6,7 +6,7 @@ let server = HTTPServer()
 
 
 var routes = Routes()
-routes.add(method: .get, uri: "/", handler: indexHandler)
+routes.add(method: .get, uri: "/graphql", handler: indexHandler)
 
 server.addRoutes(routes)
 server.serverPort = 8080
