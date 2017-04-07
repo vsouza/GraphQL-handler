@@ -16,24 +16,30 @@ A simple route with a `indexHandler` call when `GET` on `/graphql` route.
 routes.add(method: .get, uri: "/graphql", handler: indexHandler)
 ```
 
-Define your schema with `RootQueries`, `RootMutations` e etc...
+Define your schema with `RootQueries`, `RootMutations`, `CustomTypes` e etc...
 
 ```swift
-do {
-    let schema = try GraphQLSchema(
-        query: GraphQLObjectType(
-            name: "RootQueryType",
-            fields: [
-                "hello": GraphQLField(
-                    type: GraphQLString,
-                    resolve: { _ in "world" }
-                )
-            ]
-        )
-    )
+let UserType =  try! GraphQLObjectType(
+    name: "User",
+    description: "A user in system",
+    fields:[
+        "id": GraphQLField(
+            type: GraphQLNonNull(GraphQLString),
+            description: "The id of the user."
+        ),
+        "name": GraphQLField(
+            type: GraphQLString,
+            description: "The name of the user."
+        ),
+        "email": GraphQLField(
+            type: GraphQLString,
+            description: "The email of the user."
+        ),
+    ]
+)
 ```
 
-Execute graphql request:
+In handler you will call the GraphQL parser:
 
 ```swift
 let result = try graphql(schema: schema, request: query)
@@ -52,11 +58,13 @@ says here:
 
 listen on `:8080`
 
-`http://localhost:8080/graphql?query={hello}`
+`http://localhost:8080/graphql?query=query{user(id: "3000"){id,name,email}}`
 
 
 ## Release History
 
+* 0.0.2
+    * Improve Schema and add sample data
 * 0.0.1
     * Simple handler with basic schema
 

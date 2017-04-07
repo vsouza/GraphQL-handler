@@ -8,20 +8,17 @@ let UserType =  try! GraphQLObjectType(
     fields:[
         "id": GraphQLField(
             type: GraphQLString,
-            description: "The id of the character."
+            description: "The id of the id."
         ),
         "name": GraphQLField(
             type: GraphQLString,
-            description: "The id of the character."
+            description: "The name of the name."
         ),
         "email": GraphQLField(
             type: GraphQLString,
-            description: "The id of the character."
+            description: "The email of the user."
         ),
-    ],
-    isTypeOf: { source, _, _ in
-        source is User
-    }
+    ]
 )
 
 let QueryType = try! GraphQLObjectType(
@@ -32,9 +29,7 @@ let QueryType = try! GraphQLObjectType(
             args: [
                 "id": GraphQLArgument(
                     type: GraphQLString,
-                    description:
-                    "If omitted, returns the hero of the whole saga. If " +
-                    "provided, returns the hero of that particular episode."
+                    description: "Get user by ID"
                 )
             ],
             resolve: { _, arguments, _, _ in
