@@ -4,6 +4,7 @@
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
+[![codebeat badge](https://codebeat.co/badges/1c0f9ac0-84e2-4c1d-96ef-5c0094bca263)](https://codebeat.co/projects/github-com-vsouza-graphql-handler-master)
 
 A simple handler implementation of GraphQL using [Perfect](http://perfect.org)
 
