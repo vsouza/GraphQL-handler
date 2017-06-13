@@ -1,4 +1,4 @@
-# GraphQL-handler
+# GraphQL Handler
 
 > Swift GraphQL Handler
 
